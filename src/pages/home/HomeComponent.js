@@ -5,6 +5,11 @@ import Tab from "@material-ui/core/Tab";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 import SahamComponent from "../../components/home/SahamComponent";
 import CryptoComponent from "../../components/home/CryptoComponents";
 
@@ -41,7 +46,7 @@ function a11yProps(index) {
   };
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   stickToTop: {
     width: "100%",
     position: "fixed",
@@ -50,17 +55,58 @@ const useStyles = makeStyles({
   tapPanel: {
     marginTop: "50px",
   },
-});
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 100,
+    position: "absolute",
+    top: -50,
+    right: 0,
+  },
+  input: {},
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const Home = () => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
+  const [age, setAge] = useState("");
+  const [state, setState] = React.useState({
+    age: "",
+    name: "hai",
+  });
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const handleChangez = (event) => {
+    const name = event.target.name;
+    setState({
+      ...state,
+      [name]: event.target.value,
+    });
+  };
   return (
     <div>
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-outlined-label">Filter</InputLabel>
+        <Select
+          labelId="demo-simple-select-filled-label"
+          id="demo-simple-select-filled"
+          value={age}
+          onChange={handleChange}
+          className={classes.input}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Top Gainers</MenuItem>
+          <MenuItem value={20}>Top Loss</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
       <Tabs
         value={value}
         onChange={handleChange}

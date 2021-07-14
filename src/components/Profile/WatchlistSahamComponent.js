@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,19 +19,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SahamComponent() {
+export default function WatchlistSahamComponent() {
   const classes = useStyles();
 
   return (
-    <List
-      className={(classes.root, classes.taii)}
-      aria-labelledby="nested-list-subheader"
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader" align="left">
-          Top Gainers
-        </ListSubheader>
-      }
-    >
+    <List className={(classes.root, classes.taii)}>
       <ListItem>
         <ListItemText primary="CFIN" secondary="Clipan Finance Indonesia TBK" />
         <ListItemSecondaryAction className={classes.percent}>

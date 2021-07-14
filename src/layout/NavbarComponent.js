@@ -28,6 +28,9 @@ const useStyles = makeStyles({
     position: "fixed",
     bottom: 0,
   },
+  container: {
+    position: "relative",
+  },
 });
 
 const NavbarComponent = () => {
@@ -62,7 +65,7 @@ const NavbarComponent = () => {
           </ul>
         </nav> */}
 
-        <Container align="center" maxWidth="sm">
+        <Container align="center" maxWidth="sm" className={classes.container}>
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           <Switch>
