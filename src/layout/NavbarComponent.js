@@ -38,7 +38,7 @@ const useStyles = makeStyles({
 const NavbarComponent = () => {
   let history = useHistory();
   const classes = useStyles();
-  const [value, setValue] = useState("recents");
+  const [value, setValue] = useState("/");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -97,21 +97,33 @@ const NavbarComponent = () => {
         onChange={handleChange}
         className={(classes.root, classes.stickToBottom)}
       >
-        <BottomNavigationAction label="Home" value="/" icon={<HomeIcon />} />
+        <BottomNavigationAction
+          label="Home"
+          value="/"
+          icon={<HomeIcon />}
+          component={Link}
+          to="/"
+        />
         <BottomNavigationAction
           label="Search"
           value="/search"
           icon={<SearchIcon />}
+          component={Link}
+          to="/search"
         />
         <BottomNavigationAction
           label="Chart"
           value="/chart"
           icon={<ChartIcon />}
+          component={Link}
+          to="/chart"
         />
         <BottomNavigationAction
           label="Profile"
           value="/profile"
           icon={<PersonIcon />}
+          component={Link}
+          to="/profile"
         />
       </BottomNavigation>
     </Router>

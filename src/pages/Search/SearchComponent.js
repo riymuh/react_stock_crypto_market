@@ -13,13 +13,11 @@ const useStyles = makeStyles((theme) => ({
   input: {
     flex: 1,
     width: "100%!important",
+    marginTop: "10px",
   },
   iconButton: {
     padding: 10,
-  },
-  divider: {
-    height: 28,
-    margin: 4,
+    marginTop: "10px",
   },
   search: {},
 }));
@@ -28,7 +26,7 @@ const SearchComponent = () => {
 
   return (
     <div className={classes.search}>
-      <Grid container spacing={5}>
+      <Grid container spacing={3}>
         <Grid item xs={10}>
           <InputBase
             className={classes.input}
