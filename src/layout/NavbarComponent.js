@@ -6,7 +6,9 @@ import {
   Link,
   useHistory,
 } from "react-router-dom";
-import HomeComponent from "../pages/home/HomeComponent";
+import LoginComponent from "../pages/Auth/LoginComponent";
+import LogoutComponent from "../pages/Auth/LogoutComponent";
+import HomeComponent from "../pages/Home/HomeComponent";
 import ProfileComponent from "../pages/Profile/ProfileComponent";
 import ChartComponent from "../pages/Chart/ChartComponent";
 import SearchComponent from "../pages/Search/SearchComponent";
@@ -78,8 +80,14 @@ const NavbarComponent = () => {
             <Route path="/search">
               <SearchComponent />
             </Route>
-            <Route path="/">
+            <Route path="/" exact>
               <HomeComponent />
+            </Route>
+            <Route path="/login">
+              <LoginComponent />
+            </Route>
+            <Route path="/logout">
+              <LogoutComponent />
             </Route>
           </Switch>
         </Container>
