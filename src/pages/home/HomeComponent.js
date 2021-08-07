@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -11,6 +11,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import SahamComponent from "../../components/home/SahamComponent";
 import CryptoComponent from "../../components/home/CryptoComponents";
+import axios from "axios";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -68,6 +69,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Home = () => {
+  const [count, setCount] = useState(0);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
+      .then(function (response) {
+        // handle success
+        console.log(response);
+        setUsers(response.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, []);
+
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [age, setAge] = useState("");
@@ -117,11 +139,12 @@ const Home = () => {
         <Tab label="Crypto" {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0} className={classes.tapPanel}>
-        <SahamComponent />
+        <SahamComponent users={users} />
       </TabPanel>
       <TabPanel value={value} index={1} className={classes.tapPanel}>
         <CryptoComponent />
       </TabPanel>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
     </div>
   );
 };

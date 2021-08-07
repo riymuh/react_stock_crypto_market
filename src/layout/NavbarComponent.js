@@ -9,6 +9,7 @@ import {
 import LoginComponent from "../pages/Auth/LoginComponent";
 import LogoutComponent from "../pages/Auth/LogoutComponent";
 import HomeComponent from "../pages/Home/HomeComponent";
+import UserComponent from "../pages/Home/UserComponent";
 import ProfileComponent from "../pages/Profile/ProfileComponent";
 import ChartComponent from "../pages/Chart/ChartComponent";
 import SearchComponent from "../pages/Search/SearchComponent";
@@ -76,6 +77,9 @@ const NavbarComponent = () => {
             </Route>
             <Route path="/chart">
               <ChartComponent />
+            </Route>
+            <Route path="/users/:id" exact>
+              <UserComponent />
             </Route>
             <Route path="/search">
               <SearchComponent />

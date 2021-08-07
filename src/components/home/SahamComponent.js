@@ -1,6 +1,14 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
+import Button from "@material-ui/core/Button";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
@@ -20,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SahamComponent() {
+export default function SahamComponent(props) {
   const classes = useStyles();
-
+  console.log(props.users);
   return (
     <List
       className={(classes.root, classes.taii)}
@@ -33,24 +41,21 @@ export default function SahamComponent() {
         </ListSubheader>
       }
     >
-      <ListItem>
-        <ListItemText primary="CFIN" secondary="Clipan Finance Indonesia TBK" />
-        <ListItemSecondaryAction className={classes.percent}>
-          23%
-        </ListItemSecondaryAction>
-      </ListItem>
-      <ListItem>
-        <ListItemText primary="ANTM" secondary="Aneka Tambang TBK" />
-        <ListItemSecondaryAction className={classes.percent}>
-          23%
-        </ListItemSecondaryAction>
-      </ListItem>
-      <ListItem>
-        <ListItemText primary="ADRO" secondary="Adaro Energy TBK" />
-        <ListItemSecondaryAction className={classes.percent}>
-          23%
-        </ListItemSecondaryAction>
-      </ListItem>
+      {props.users.map((item) => (
+        <ListItem key={item.id}>
+          <ListItemText primary={item.username} secondary={item.name} />
+          <ListItemSecondaryAction className={classes.percent}>
+            <Button
+              variant="outlined"
+              size="small"
+              to={`users/` + item.id}
+              component={Link}
+            >
+              View
+            </Button>
+          </ListItemSecondaryAction>
+        </ListItem>
+      ))}
     </List>
   );
 }
